@@ -1,0 +1,25 @@
+Setup method using the @BeforeClass annotation in TestNG to initialize and configure the WebDriver. This method will run before any test in the test class:
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeClass;
+
+public class BaseTest {
+
+    WebDriver driver;
+
+    @BeforeClass
+    public void setUp() {
+        // Set the path to your ChromeDriver executable
+        System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
+
+        // Initialize ChromeDriver
+        driver = new ChromeDriver();
+
+        // Maximize the browser window
+        driver.manage().window().maximize();
+
+        // Set implicit wait time for elements to be found
+        driver.manage().timeouts().implicitlyWait(10, java.util.concurrent.TimeUnit.SECONDS);
+    }
+}
